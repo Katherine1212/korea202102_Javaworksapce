@@ -1,0 +1,16 @@
+** javac.exe 접근하는 법
+1. cmd 창 연다.
+2. javac.exe 입력해본다.
+----되면 ok
+if 안 된다?
+cd C:\Java\jdk-11.0.11\bin
+javac.exe
+
+javac.exe 컴파일 하고픈  대상 경로 및  파일명
+또는
+cd C:\korea202102_javaworkspace\project0423 (파일이 있는 경로로 이동)
+
+C:\Java\jdk-11.0.11\bin\javac.exe 파일.java
+
+실행시키고 싶다!
+C:\Java\jdk-11.0.11\bin\java.exe 파일명(.class/.java 적지 말기)
