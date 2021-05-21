@@ -1,0 +1,30 @@
+어제 배운 것 정리.
+
+[ Method ]
+call by reference: 매개변수가 객체 자료형 일 경우 메소드 호출(주소에 의한 호출)
+call by value: 매개변수가 기본 자료형(문자, 숫자, 논리값) 일 때 메소드 호출(값에 의한 호출)
+
+[ package/ import/ class path ]
+환경 변수에는 path 와 class path가 있음.
+공통점: 파일의 경로 정보를 갖음.
+차이점: path- 일반 파일, class path- .class 파일에 대한 경로
+
+1. 왜 두개의 환경 변수를 쓰는가?
+    Write Once, Run Anywhere(일단 작성돤 자바코드는 어느 플랫폼에서나 코드의 수정 없이 실행.)
+    문제점: 각 OS마다 파일의 경로 표기법이 틀림.
+    해결책: 환경변수인 classpath를 이영해 해당 변수의 루트를 등록하고, Java내에서는 해당 루트 이하를 명시.
+    ig) classpath 의 값을"d:\myproject\bin" 으로 등록. 
+          package animal;
+          import animal.Dog;
+	    if) 등록 안 했을 경우에는 원래.
+	    package d:\myproject\bin;
+	    import d:\myproject\bin\Dog;
+
+    이 실행 원리가 전제를 하는 것은?
+    자바의 클래스를 제대로 실행하려면 해당 OS마다 반드시 classpath를 등록.
+
+2. package- class를 보관하는 디렉토리.
+    사용 이유: 목적에 맞게 관령성 있는  class 끼리 묶기 위함. 
+                  class명의 중복으로 인한 문제를 원천적으로 방지.(디렉토리 구분)
+3. import- 나와는 다른 패키지에 있는 클래스의 경로를 명시.
+                나와 같은 패키지 내 클래스는 import 할 필요 없다.

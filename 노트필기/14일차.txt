@@ -1,0 +1,19 @@
+[스트림]
+1. 유형
+1) 문자를 읽혀질 수 있는가? 문자 기반 스트림(~Reader, ~Writer)
+2) 문자로 읽혀질 수 없는가? 바이트 기반 스트림(~InputStream, ~OutputStream)
+
+2. 처리의 효율성
+버퍼를 이용하면, 입 출력 속도가 향상된다.
+1) read()메소드의 인수로 배열을 이용 할 수 있음.
+2) 스트림 자체적으로 버퍼처리가 된 스트림(Buffered~)
+
+[JDBC; Java DataBase Connectivity/자바의 데이터베이스 연동기술]
+1) 드라이버: DB제작사에서 제공해야함.(jar 형태로 배포)
+		jar란? Java ARchive 로써, 압축된 클래스파일.
+2) 접속을 담당: DriverManager
+3) 접속정보를 가진 객체: Connection, 접속 해제도 이 객체를 이용.
+4) 쿼리문 수행 객체: PreparedStatement
+			 DML(Insert, Update, Delete)- executeUpdate()
+			 Select- executeQuery()
+5) select 문의 결과를 담는 객체: ResultSet

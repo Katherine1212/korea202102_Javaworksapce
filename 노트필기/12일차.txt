@@ -1,0 +1,38 @@
+[Collection Framework]
+- 개념: 객체를 모아 처리하는데 유용한 api모음
+- 지원: java.util
+- 유형- List, Set, Map
+	1) List: 순서 o, 배열과 거의 유사
+	   배열과의 차이점: 크기가 동적으로 변하며 대상은 객체만.
+	2) Set: 순서x, 중복 허용하지 않음. 순서가 없어 반복문으로 요소에 직접 접근 불가.
+	   직접 접근을 위해 Iterator, Enumeration이용
+	3) Map: Key-Value 의 쌍으로 객체를 다루는 방법.(유사 Json)
+		    반복문을 이용해 value에 접근 불가하므로, 
+		    Set을 이용 후 Iterator, Enumeration이용
+- improved for loop(개선된 for문)
+	for(collection요소:collection 객체){}
+- Gemeric Type
+	List<String> 으로 선언하면 String만을 처리 대상으로 한정지음.
+	List<Gerneric Type> 으로 사용하며, JButton이나 String등등 다양하게 올 수 있음.
+----------------------------------------------------------------------------------
+[Stream(스트림)]
+현실의 뜻: 물줄기, 지류
+전산의 뜻: 흐르는 대상이 데이터.
+
+스트림은 방향이 있고, 그 기준은 실행중인 프로그램(프로세스)이다.
+1) 프로그램으로 데이터가 들어가는 것: InputStream(입력스트림)
+2) 프로그램에서 데이터가 흘러나가는 것: OutputStream(출력스트림)
+	입출력 합쳐 IO라고 함.
+스트림의 분류 
+(1)방향을 기준 : 입력, 출력 
+
+(2)데이터처리 방식 :  
+바이트 기반 : 읽거나(입력), 쓸때(출력) 데이터를 1byte씩 처리 
+		 ex)  fis.read();  // 1byte
+		        fos.write(data); // 1byte 
+
+문자기반 : ~~Reader
+
+
+
+버퍼기반

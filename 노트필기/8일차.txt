@@ -1,0 +1,24 @@
+[GUI 프로그래밍= 윈도우 프로그래밍]
+- 그래픽으로 프로그램을 조작할 수 있도록 작성
+
+[JAVA의 GUI]
+- awt/swing, FX
+
+[GUI 컴포넌트의 구성]
+포함 관계의 기준: 
+- 남을 포함 o 컨테이너(Container)- Frame, panel, 배치능력이 잇으므로 배치관리자 사용 가능
+- 남을 포함 x 일반 컴포넌트(Visual comfornant)
+
+[배치관리자]
+- FlowLayout: 수직 or 수평으로 배치
+- BorderLayout: 방위를 갖는 배치(동, 서,,남, 북, 센터)
+- GridLayout: 격자 형태로 배치(row, col)
+- GridBagLayout: 좌표 이용하여 배치(유지 보수가 까다롭고 복잡함)
+- CardLayout: 카드를 보여주는 방식, 주로 화면전환 or 메뉴 이용
+
+배치 관리자를 적용하지 않는다면 시스템에 의해 디폴트 배치 관리자가 적용됨.
+(배치관리자 없는 배치는 불가능)
+Frame: BorderLayout center
+Panel: FlowLayout
+
+
