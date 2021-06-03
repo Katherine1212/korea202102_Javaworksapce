@@ -6,7 +6,6 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JButton;
@@ -19,16 +18,17 @@ import javax.swing.JTextField;
 import com.minssam.shoppingapp.main.AppMain;
 import com.minssam.shoppingapp.main.Page;
 
-public class LoginForm extends Page{
+public class JoinForm extends Page{
 	JPanel p_container;//BorderLayout 
 	JPanel p_center; //form 
 	JPanel p_south; //버튼 영역 
-	JLabel la_id, la_pass;
+	JLabel la_id, la_pass,la_name;
 	JTextField t_id; 
 	JPasswordField t_pass;
+	JTextField t_name;
 	JButton bt_login, bt_join;
 
-	public LoginForm(AppMain appMain) {
+	public JoinForm(AppMain appMain) {
 		super(appMain);
 		// ----------------------------------------------[생성]
 		p_container= new JPanel();
@@ -36,14 +36,16 @@ public class LoginForm extends Page{
 		p_south= new JPanel();
 		la_id= new JLabel("ID");
 		la_pass= new JLabel("Paswword");
+		la_name= new JLabel("Name");
 		t_id= new JTextField();
 		t_pass= new JPasswordField();
+		t_name= new JTextField();
 		bt_login= new JButton("Login");
-		bt_join= new JButton("회원가입");
+		bt_join= new JButton("등록");
 		// ----------------------------------------------[스타일 레이아웃]
-		p_container.setPreferredSize(new Dimension(250, 85));
+		p_container.setPreferredSize(new Dimension(250,85));
 		p_container.setLayout(new BorderLayout());
-		p_center.setLayout(new GridLayout(2, 2));
+		p_center.setLayout(new GridLayout(3, 2));
 		
 		// ----------------------------------------------[조립]
 		// 센터
@@ -51,6 +53,8 @@ public class LoginForm extends Page{
 		p_center.add(t_id);
 		p_center.add(la_pass);
 		p_center.add(t_pass);
+		p_center.add(la_name);
+		p_center.add(t_name);
 		// 하단
 		p_south.add(bt_login);
 		p_south.add(bt_join);
@@ -62,41 +66,41 @@ public class LoginForm extends Page{
 		 add(p_container);
 		// ----------------------------------------------[리스너]
 		 bt_login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				loginCheck();
-			}
-		});
-		bt_join.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// AppMain에 있는 showHide(6)을 받자
-				LoginForm.this.getAppMain().showHide(6);
-			}
-		});
+				public void actionPerformed(ActionEvent e) {
+					JoinForm.this.getAppMain().showHide(4);
+				}
+			});
+
+		 bt_join.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					regist();
+				}
+			});
 		// ----------------------------------------------[보여주기]
 		
 	}
-	public void loginCheck() {
-		String sql= "select * from member where m_id=? and m_pass=?";
+	// 회원등록
+	public void regist() {
+		String sql="insert into member(m_id, m_pass, m_name) values(?,?,?)";
+		PreparedStatement pstmt=null;
 		
-		PreparedStatement pstmt= null;
-		ResultSet rs= null;
 		try {
 			pstmt=this.getAppMain().getCon().prepareStatement(sql);
+
 			pstmt.setString(1, t_id.getText());
-			pstmt.setString(2, new String(t_pass.getPassword()));
-			rs= pstmt.executeQuery();
-			// 회원인지 아닌지
-			if(rs.next()) { 
-				JOptionPane.showMessageDialog(this.getAppMain(), "인증되었습니다.");
-				this.getAppMain().setSession(true); // 인증성공의 데이터 대입
+			pstmt.setString(2, new String( t_pass.getPassword()));
+			pstmt.setString(3, t_name.getText());
+			
+			int result = pstmt.executeUpdate(); 
+			if(result==1) {
+				JOptionPane.showMessageDialog(this.getAppMain(), "가입 성공");
 			}else {
-				JOptionPane.showMessageDialog(this.getAppMain(), "로그인 정보가 올바르지 않습니다.");
+				JOptionPane.showMessageDialog(this.getAppMain(), "가입 실패");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			this.getAppMain().release(pstmt, rs);
+			this.getAppMain().release(pstmt);
 		}
 	}
 }
